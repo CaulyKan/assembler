@@ -1,0 +1,37 @@
+# This file is part of assembler. It is subject to the license terms in the COPYRIGHT file found in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/assembler/master/COPYRIGHT. No part of assembler, including this file, may be copied, modified, propagated, or distributed except according to the terms contained in the COPYRIGHT file.
+# Copyright © 2018 The developers of assembler. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/lemonrock/assembler/master/COPYRIGHT.
+
+
+[package]
+name = "assembler"
+description = "An efficient run-time assembler for X86-64 code that is intended to be immediately executed"
+keywords = ["assembler", "X86", "AMD64"]
+categories = ["encoding", "hardware-support"]
+license = "AGPL-3.0"
+authors = ["Raphael Cohn <raphael.cohn@stormmq.com>"]
+homepage = "https://github.com/lemonrock/assembler"
+repository = "https://github.com/lemonrock/assembler.git"
+exclude = ["*"]
+include = ["README.md", "LICENSE", "COPYRIGHT", "src/**/*.rs", "Cargo.toml", "clippy.toml"]
+readme = "README.md"
+publish = true
+version = "0.10.1"
+
+[dependencies]
+libc = "^0.2"
+#windows = {version="0.43.0", optional=true}
+windows-sys = {version="0.42.0", features=["Win32_System_Memory", "Win32_Foundation", "Win32_Security"]}
+
+
+[dev-dependencies]
+criterion = "0.2.11"
+
+[[bench]]
+name = "performance_tests"
+harness = false
+
+[features]
+#windows = ["dep:windows"]
+
+[lib]
+doctest=false

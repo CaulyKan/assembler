@@ -1,1 +1,3 @@
 .cargo/.gitignore
+workspace/target
+assembler/target
