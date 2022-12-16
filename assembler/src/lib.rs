@@ -5,6 +5,8 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
 #![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(dead_code)]
 #![allow(missing_docs)]
 #![deny(unreachable_patterns)]
 
@@ -109,7 +111,7 @@ mod ExecutableAnonymousMemoryMapCreationError;
 mod InstructionPointer;
 mod InstructionPointerValidity;
 mod InstructionStream;
-mod InstructionStreamHints;
+pub mod InstructionStreamHints;
 mod LabelledLocations;
 mod NearJmpResult;
 mod ShortJmpResult;
