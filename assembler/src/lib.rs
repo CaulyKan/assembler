@@ -110,7 +110,7 @@ pub mod ExecutableAnonymousMemoryMap;
 mod ExecutableAnonymousMemoryMapCreationError;
 mod InstructionPointer;
 mod InstructionPointerValidity;
-mod InstructionStream;
+pub mod InstructionStream;
 pub mod InstructionStreamHints;
 mod LabelledLocations;
 mod NearJmpResult;
