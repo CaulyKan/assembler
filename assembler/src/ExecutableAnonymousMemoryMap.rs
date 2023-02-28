@@ -51,7 +51,9 @@ use std::ptr::copy_nonoverlapping;
 use std::ptr::null_mut;
 use std::ptr::NonNull;
 use std::slice::from_raw_parts;
+#[cfg(target_os = "windows")]
 use windows_sys::Win32::Foundation::*;
+#[cfg(target_os = "windows")]
 use windows_sys::Win32::System::Memory::*;
 /// Represents an executable memory map that can be used to generate program code into.
 #[derive(Debug)]
