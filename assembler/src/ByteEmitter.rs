@@ -49,6 +49,7 @@ use std::ops::Sub;
 use std::ops::SubAssign;
 use std::ptr::copy_nonoverlapping;
 use std::ptr::null_mut;
+use std::ptr::write_unaligned;
 use std::ptr::NonNull;
 use std::slice::from_raw_parts;
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -219,12 +220,12 @@ impl ByteEmitter {
 
     #[inline(always)]
     pub(crate) fn emit_u32_at(&mut self, emit: u32, at: InstructionPointer) {
-        unsafe { *(at as *mut u32) = emit };
+        unsafe { write_unaligned(at as *mut u32, emit) };
     }
 
     #[inline(always)]
     pub(crate) fn emit_u64_at(&mut self, emit: u64, at: InstructionPointer) {
-        unsafe { *(at as *mut u64) = emit };
+        unsafe { write_unaligned(at as *mut u64, emit) };
     }
 
     #[inline(always)]
@@ -245,7 +246,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u16"
         );
-        unsafe { *(self.instruction_pointer as *mut u16) = emit.to_le() };
+        unsafe { write_unaligned(at as *mut u16, emit.to_le()) };
         self.instruction_pointer += Size;
     }
 
@@ -256,7 +257,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u32"
         );
-        unsafe { *(self.instruction_pointer as *mut u32) = emit.to_le() };
+        unsafe { write_unaligned(at as *mut u32, emit.to_le())  };
         self.instruction_pointer += Size;
     }
 
@@ -267,7 +268,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u64"
         );
-        unsafe { *(self.instruction_pointer as *mut u64) = emit.to_le() };
+        unsafe { write_unaligned(at as *mut u64, emit.to_le())  };
         self.instruction_pointer += Size;
     }
 
@@ -278,7 +279,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u128"
         );
-        unsafe { *(self.instruction_pointer as *mut u128) = emit.to_le() };
+        unsafe { write_unaligned(at as *mut u128, emit.to_le())  };
         self.instruction_pointer += Size;
     }
 
