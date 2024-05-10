@@ -246,7 +246,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u16"
         );
-        unsafe { write_unaligned(at as *mut u16, emit.to_le()) };
+        unsafe { write_unaligned(self.instruction_pointer as *mut u16, emit.to_le()) };
         self.instruction_pointer += Size;
     }
 
@@ -257,7 +257,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u32"
         );
-        unsafe { write_unaligned(at as *mut u32, emit.to_le())  };
+        unsafe { write_unaligned(self.instruction_pointer  as *mut u32, emit.to_le())  };
         self.instruction_pointer += Size;
     }
 
@@ -268,7 +268,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u64"
         );
-        unsafe { write_unaligned(at as *mut u64, emit.to_le())  };
+        unsafe { write_unaligned(self.instruction_pointer  as *mut u64, emit.to_le())  };
         self.instruction_pointer += Size;
     }
 
@@ -279,7 +279,7 @@ impl ByteEmitter {
             self.instruction_pointer + Size <= self.end_instruction_pointer,
             "Not enough space to emit an u128"
         );
-        unsafe { write_unaligned(at as *mut u128, emit.to_le())  };
+        unsafe { write_unaligned(self.instruction_pointer  as *mut u128, emit.to_le())  };
         self.instruction_pointer += Size;
     }
 
